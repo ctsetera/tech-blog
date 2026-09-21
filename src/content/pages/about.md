@@ -9,7 +9,7 @@ the popular [Chirpy Jekyll theme](https://chirpy.cotes.page/) to
 modern toolchain, and zero-JavaScript reading by default.
 
 It is intended for personal blogs, technical journals, and documentation
-sites where typography, search, and quiet, focused reading matter more
+sites where typography and quiet, focused reading matter more
 than animations and ad slots.
 
 ## What's in the box
@@ -23,8 +23,6 @@ than animations and ad slots.
   Shiki syntax highlighting, GFM, footnotes, an automatic table of
   contents, and a bundled `<Callout>` component.
 - **LaTeX math** — opt-in KaTeX support per post via `math: true`.
-- **Instant search** — [Pagefind](https://pagefind.app/) generates a
-  static search index at build time; the search overlay loads on demand.
 - **Comments** — [Giscus](https://giscus.app/) integration backed by
   GitHub Discussions, with per-post opt-out.
 - **Smooth navigation** — Astro view transitions with a subtle fade and
@@ -37,7 +35,6 @@ than animations and ad slots.
   and view transitions
 - [**Tailwind CSS v4**](https://tailwindcss.com/) via the `@tailwindcss/vite`
   plugin, with [**daisyUI v5**](https://daisyui.com/) for theming
-- [**Pagefind**](https://pagefind.app/) for static search
 - [**Giscus**](https://giscus.app/) for comments
 - [**Shiki**](https://shiki.style/), [**KaTeX**](https://katex.org/), and
   [**Lucide**](https://lucide.dev/) icons

@@ -1,6 +1,6 @@
 # Chirping Astro Starter
 
-A minimal starter template for [Chirping Astro](https://github.com/kannansuresh/chirping-astro) — a Chirpy-inspired, Japanese-language **Astro v7** blog theme with **Tailwind CSS v4**, **daisyUI v5**, **Pagefind** search, **Giscus** comments, **Mermaid** diagrams, and **KaTeX** math.
+A minimal starter template for [Chirping Astro](https://github.com/kannansuresh/chirping-astro) — a Chirpy-inspired, Japanese-language **Astro v7** blog theme with **Tailwind CSS v4**, **daisyUI v5**, **Giscus** comments, **Mermaid** diagrams, and **KaTeX** math.
 
 > **Live demo:** [https://kannansuresh.github.io/chirping-astro](https://kannansuresh.github.io/chirping-astro)
 
@@ -70,7 +70,7 @@ See the included sample post for all available frontmatter fields.
 
 本番URLは **https://blog.ctsetera.dev** です。
 Astroで生成した `dist/` をWorkers Static Assetsで配信します。
-RSS・OG画像・Pagefindの検索インデックスもビルド時に生成するため、SSRアダプターは不要です。
+RSS・OG画像もビルド時に生成するため、SSRアダプターは不要です。
 
 ### 実行環境
 
@@ -103,7 +103,7 @@ bun run preview:workers
 
 `deploy:check` はビルドとWranglerのdry-runを行い、公開はしません。
 `preview:workers` はビルド後にWorkersのローカル配信を起動します。
-表示されたローカルURLで、記事・タグ・カテゴリ・検索・RSSを確認できます。
+表示されたローカルURLで、記事・タグ・カテゴリ・RSSを確認できます。
 `/about`、`/archives`、`/privacy`、その他の存在しないURLは既存の404ページを返します。
 
 ### Cloudflare側の初回設定
@@ -134,12 +134,11 @@ bun run preview:workers
 著者のSNSやGiscusを設定する場合は `.env.example` の `PUBLIC_*` もビルド用環境変数に追加します。
 これらは生成ファイルに反映されるため、変更後は再ビルドが必要です。
 Cloudflareの実行時変数だけを変更しても静的ページには反映されません。
-`astro build` だけでは検索インデックスが生成されないため、必ず `bun run build` を使います。
 
 4. 変更を `main` にpushすると、Workers Buildsがビルドして公開します。
    初回公開で `wrangler.jsonc` のCustom Domain設定により `blog.ctsetera.dev` をWorkerに割り当てます。
    同じホスト名に既存のCNAMEがある場合は、Cloudflare側で用途を確認してから整理してください。
-5. 本番URLで表示・検索・RSS・404を確認します。
+5. 本番URLで表示・RSS・404を確認します。
 
 `workers.dev` とバージョンプレビューURLは無効にしており、本番の公開先は独自ドメインです。
 GitHub Actionsの `.github/workflows/ci.yml` は型チェック・Lint・テスト・ビルド・dry-run専用です。
@@ -155,7 +154,7 @@ bun run deploy
 ```
 
 このコマンドは実際に本番へ公開します。ログインするアカウントは `ctsetera.dev` を管理するものを使用してください。
-`bun run deploy` は公開直前にサイトと検索インデックスを再生成します。
+`bun run deploy` は公開直前にサイトを再生成します。
 
 参考：[Astroの静的サイト公開](https://developers.cloudflare.com/workers/framework-guides/web-apps/astro/)、
 [Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/)、
@@ -183,8 +182,8 @@ URLには言語プレフィックスを付けず、RSSは `/rss.xml` の1本で�
 
 ## サイト内検索
 
-検索対象は `/posts/.../` の個別記事のみです。ホーム、カテゴリ・タグ一覧、検索ページなどは検索結果に含めません。
-対象は `pagefind.yml` の `glob` で指定しています。設定変更後は `bun run build` で検索インデックスを再生成してください。
+サイト内検索は提供していません。記事はホーム、カテゴリ、タグから探せます。
+`/search` にアクセスした場合は404ページを表示します。
 
 ## Customization
 

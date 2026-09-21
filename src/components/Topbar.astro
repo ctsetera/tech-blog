@@ -1,13 +1,12 @@
 ---
 /**
- * Chirpy-style topbar: hamburger (mobile only) | breadcrumb | site title (mobile) | search
+ * Chirpy-style topbar: hamburger (mobile only) | breadcrumb | site title (mobile)
  * Sits inside the main column, below the header.
  */
 import { SITE } from '../config';
 import { withBase } from '../utils/site';
 import { labels } from '../utils/ui';
 import { Icon } from 'astro-icon/components';
-import SearchButton from './islands/SearchButton.astro';
 
 interface Props {
   /**
@@ -60,9 +59,5 @@ const home = withBase('/');
     <a href={home} class="ml-1 truncate text-base font-semibold sm:hidden" aria-label={SITE.title}>
       {SITE.title}
     </a>
-  </div>
-
-  <div class="chirpy-topbar__search">
-    <SearchButton />
   </div>
 </header>

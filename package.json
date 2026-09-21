@@ -2,7 +2,7 @@
   "name": "chirping-astro",
   "version": "1.2.0",
   "type": "module",
-  "description": "A Chirpy-inspired, single-template, Japanese-language Astro v7 theme with Tailwind v4, daisyUI, MDX, Pagefind, and Giscus.",
+  "description": "A Chirpy-inspired, single-template, Japanese-language Astro v7 theme with Tailwind v4, daisyUI, MDX, and Giscus.",
   "license": "MIT",
   "private": false,
   "engines": {
@@ -12,12 +12,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && bun run pagefind",
+    "build": "astro build",
     "preview": "astro preview",
     "serve": "bun run build && bun preview",
     "astro": "astro",
-    "pagefind": "pagefind --site dist --output-subdir _pagefind",
-    "postbuild": "echo \"Pagefind index generated in dist/_pagefind\"",
     "typecheck": "astro check",
     "test": "bun test",
     "lint": "eslint . --max-warnings=0",
@@ -59,7 +57,6 @@
     "eslint-plugin-astro": "^3.0.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "katex": "^0.18.1",
-    "pagefind": "^1.5.2",
     "prettier": "^3.9.4",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
@@ -77,7 +74,6 @@
     "tailwindcss",
     "daisyui",
     "mdx",
-    "pagefind",
     "giscus",
     "blog"
   ],
