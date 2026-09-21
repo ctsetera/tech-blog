@@ -25,10 +25,17 @@ export interface OgImageData {
 const WIDTH = 1200;
 const HEIGHT = 630;
 
-// Load font files from @fontsource/inter (bundled locally, no network needed).
+// Load Latin and Japanese fonts locally so OG generation works without network access.
 const fontsDir = join(process.cwd(), 'node_modules/@fontsource/inter/files');
 const fontRegular = readFileSync(join(fontsDir, 'inter-latin-400-normal.woff'));
 const fontBold = readFileSync(join(fontsDir, 'inter-latin-700-normal.woff'));
+const japaneseFontsDir = join(process.cwd(), 'node_modules/@fontsource/noto-sans-jp/files');
+const fontJapaneseRegular = readFileSync(
+  join(japaneseFontsDir, 'noto-sans-jp-japanese-400-normal.woff'),
+);
+const fontJapaneseBold = readFileSync(
+  join(japaneseFontsDir, 'noto-sans-jp-japanese-700-normal.woff'),
+);
 
 /**
  * Generate a themed OG image as a PNG buffer.
@@ -77,6 +84,7 @@ export async function generateOgImage(data: OgImageData): Promise<Buffer> {
     type: 'div',
     props: {
       style: {
+        fontFamily: 'Inter, Noto Sans JP',
         width: '100%',
         height: '100%',
         display: 'flex',
@@ -259,6 +267,8 @@ export async function generateOgImage(data: OgImageData): Promise<Buffer> {
     fonts: [
       { name: 'Inter', data: fontRegular, weight: 400, style: 'normal' },
       { name: 'Inter', data: fontBold, weight: 700, style: 'normal' },
+      { name: 'Noto Sans JP', data: fontJapaneseRegular, weight: 400, style: 'normal' },
+      { name: 'Noto Sans JP', data: fontJapaneseBold, weight: 700, style: 'normal' },
     ],
   });
 

@@ -1,2 +1,0 @@
-# Index individual post pages only. Paths are relative to dist.
-glob: "posts/**/*.html"

@@ -38,7 +38,7 @@ jobs:
         run: bun run lint
       - name: Test
         run: bun test
-      - name: Build site and search index
+      - name: Build site
         run: bun run build
       - name: Validate Workers deployment without publishing
         run: bunx --no-install wrangler deploy --dry-run

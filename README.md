@@ -71,6 +71,7 @@ See the included sample post for all available frontmatter fields.
 本番URLは **https://blog.ctsetera.dev** です。
 Astroで生成した `dist/` をWorkers Static Assetsで配信します。
 RSS・OG画像もビルド時に生成するため、SSRアダプターは不要です。
+OG画像は同梱のInterとNoto Sans JP（通常・太字）で描画し、日本語にも対応しています。画像生成時のフォント取得通信は不要です。
 
 ### 実行環境
 
