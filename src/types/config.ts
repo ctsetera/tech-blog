@@ -1,4 +1,3 @@
-import type { Locale } from '../config';
 import type { ImageMetadata } from 'astro';
 
 export interface SiteConfig {
@@ -33,15 +32,12 @@ export interface SiteConfig {
     themeUrl: string;
   };
   url: string;
-  locales: readonly Locale[];
-  defaultLocale: Locale;
-  multilingual: boolean;
 }
 
 export interface NavItem {
-  /** Unique key matching i18n.ts entries. */
+  /** Unique key matching navigation labels. */
   key: string;
-  /** Path WITHOUT leading locale prefix. The renderer adds it. */
+  /** Site-relative path. */
   href: string;
   /** Optional icon name (e.g. "home", "tags"). */
   icon?: string;

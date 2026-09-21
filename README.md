@@ -1,6 +1,6 @@
 # Chirping Astro Starter
 
-A minimal starter template for [Chirping Astro](https://github.com/kannansuresh/chirping-astro) — a Chirpy-inspired, multilingual **Astro v7** blog theme with **Tailwind CSS v4**, **daisyUI v5**, **Pagefind** search, **Giscus** comments, **Mermaid** diagrams, and **KaTeX** math.
+A minimal starter template for [Chirping Astro](https://github.com/kannansuresh/chirping-astro) — a Chirpy-inspired, Japanese-language **Astro v7** blog theme with **Tailwind CSS v4**, **daisyUI v5**, **Pagefind** search, **Giscus** comments, **Mermaid** diagrams, and **KaTeX** math.
 
 > **Live demo:** [https://kannansuresh.github.io/chirping-astro](https://kannansuresh.github.io/chirping-astro)
 
@@ -36,11 +36,11 @@ Open [http://localhost:4321](http://localhost:4321) to see your site.
 2. Copy `.env.example` to `.env` and fill in your values.
 3. Replace `src/assets/images/site/avatar.svg` with your own avatar.
 4. Replace `src/assets/images/site/favicon.svg` with your own favicon.
-5. Start writing posts in `src/content/posts/en/`.
+5. Start writing posts in `src/content/posts/`.
 
 ## Writing Posts
 
-Create a new `.md` or `.mdx` file in `src/content/posts/en/`:
+Create a new `.md` or `.mdx` file in `src/content/posts/`:
 
 ```markdown
 ---
@@ -89,11 +89,10 @@ Go to **Settings → Environments → github-pages → Environment variables** a
 
 ### 3. Customize the Privacy Policy (optional)
 
-Edit the bilingual privacy policy templates:
+Edit the privacy policy template:
 
 ```text
-src/content/pages/en/privacy.md
-src/content/pages/fr/privacy.md
+src/content/pages/privacy.md
 ```
 
 Replace placeholder values in `[BRACKETS]` (site name, contact email, etc.).
@@ -147,15 +146,12 @@ To enable GitHub Discussions-powered comments on posts:
    - `PUBLIC_GISCUS_CATEGORY` = `Announcements` _(or your chosen category)_
    - `PUBLIC_GISCUS_CATEGORY_ID` = _(from giscus.app)_
 
-## Single Language Mode
+## 日本語専用の構成
 
-This starter ships with English + French (i18n). To run a single-language site:
-
-1. Open `src/config.ts` and set `multilingual: false`.
-2. Delete the `src/content/posts/fr/` folder (and `src/content/pages/fr/` if present).
-3. Remove the `src/pages/fr/` directory.
-
-The language switcher will disappear and all `hreflang` tags are omitted.
+記事は `src/content/posts/`、固定ページは `src/content/pages/` に配置します。
+言語別フォルダや言語指定のフロントマターは不要です。
+URLには言語プレフィックスを付けず、RSSは `/rss.xml` の1本です。
+画面の日本語文言は `src/utils/ui.ts`、日付書式は `src/utils/site.ts` で編集できます。
 
 ## Customization
 
@@ -182,7 +178,7 @@ The language switcher will disappear and all `hreflang` tags are omitted.
 
 ## Documentation
 
-For full documentation on all features (i18n, dark mode, math, comments, OG images, etc.), see the [main repository README](https://github.com/kannansuresh/chirping-astro#readme).
+For full documentation on all features (dark mode, math, comments, OG images, etc.), see the [main repository README](https://github.com/kannansuresh/chirping-astro#readme).
 
 ## Contributing & Issues
 

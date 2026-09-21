@@ -14,50 +14,44 @@
  *   - Esc / backdrop / close button close the modal AND clear state.
  */
 
-import { useTranslations, withBase } from '../../i18n/utils';
-import type { Locale } from '../../config';
+import { withBase } from '../../utils/site';
+import { labels } from '../../utils/ui';
 import { Icon } from 'astro-icon/components';
 
-interface Props {
-  locale: Locale;
-}
-
-const { locale } = Astro.props;
-const t = useTranslations(locale);
 const pagefindScript = withBase('/_pagefind/pagefind.js');
 
-const i18n = {
-  placeholder: t('search.placeholder'),
-  closeLabel: t('search.closeLabel'),
-  clearLabel: t('search.clearLabel'),
-  typeToStart: t('search.typeToStart'),
-  searching: t('search.searching'),
-  noResultsFor: t('search.noResultsFor'),
-  resultsCount: t('search.resultsCount'),
-  resultsCountOne: t('search.resultsCountOne'),
-  hintShortcut: t('search.hintShortcut'),
-  hintNavigate: t('search.hintNavigate'),
-  hintSelect: t('search.hintSelect'),
+const copy = {
+  placeholder: labels['search.placeholder'],
+  closeLabel: labels['search.closeLabel'],
+  clearLabel: labels['search.clearLabel'],
+  typeToStart: labels['search.typeToStart'],
+  searching: labels['search.searching'],
+  noResultsFor: labels['search.noResultsFor'],
+  resultsCount: labels['search.resultsCount'],
+  resultsCountOne: labels['search.resultsCountOne'],
+  hintShortcut: labels['search.hintShortcut'],
+  hintNavigate: labels['search.hintNavigate'],
+  hintSelect: labels['search.hintSelect'],
 };
 ---
 
 <button
   type="button"
   class="search-pill"
-  aria-label={t('search.openLabel')}
-  title={t('search.openLabel')}
+  aria-label={labels['search.openLabel']}
+  title={labels['search.openLabel']}
   data-search-open
 >
   <Icon name="lucide:search" width={16} height={16} class="search-pill__icon" />
-  <span class="search-pill__label">{i18n.placeholder}</span>
+  <span class="search-pill__label">{copy.placeholder}</span>
   <kbd class="search-pill__kbd" aria-hidden="true">/</kbd>
 </button>
 
 <dialog
   data-search-modal
   class="modal modal-top sm:modal-middle"
-  aria-label={t('search.title')}
-  data-i18n={JSON.stringify(i18n)}
+  aria-label={labels['search.title']}
+  data-copy={JSON.stringify(copy)}
   data-pagefind-script={pagefindScript}
 >
   <div
@@ -76,25 +70,25 @@ const i18n = {
         type="search"
         data-search-input
         class="text-base-content placeholder:text-base-content/45 min-w-0 flex-1 border-0 bg-transparent text-base font-medium outline-none focus:ring-0"
-        placeholder={i18n.placeholder}
+        placeholder={copy.placeholder}
         autocomplete="off"
         autocapitalize="off"
         spellcheck="false"
-        aria-label={t('search.title')}
+        aria-label={labels['search.title']}
       />
       <button
         type="button"
         data-search-clear
         class="text-base-content/70 hover:bg-base-200 hover:text-base-content hidden h-7 items-center rounded-md px-2 text-xs font-medium transition"
-        aria-label={i18n.clearLabel}
+        aria-label={copy.clearLabel}
       >
-        {i18n.clearLabel}
+        {copy.clearLabel}
       </button>
       <form method="dialog" class="shrink-0">
         <button
           class="text-base-content/70 hover:bg-base-200 hover:text-base-content inline-flex h-7 w-7 items-center justify-center rounded-md transition"
-          aria-label={i18n.closeLabel}
-          title={i18n.closeLabel}
+          aria-label={copy.closeLabel}
+          title={copy.closeLabel}
         >
           <Icon name="lucide:x" width={16} height={16} />
         </button>
@@ -110,7 +104,7 @@ const i18n = {
         >
           <Icon name="lucide:search" width={18} height={18} />
         </div>
-        <p class="text-base-content/70 mt-3 text-sm">{i18n.typeToStart}</p>
+        <p class="text-base-content/70 mt-3 text-sm">{copy.typeToStart}</p>
       </div>
     </div>
 
@@ -121,16 +115,16 @@ const i18n = {
       <div class="flex items-center gap-3">
         <span class="inline-flex items-center gap-1.5">
           <kbd class="kbd kbd-xs">↑</kbd><kbd class="kbd kbd-xs">↓</kbd>
-          <span>{i18n.hintNavigate}</span>
+          <span>{copy.hintNavigate}</span>
         </span>
         <span class="hidden items-center gap-1.5 sm:inline-flex">
           <kbd class="kbd kbd-xs">↵</kbd>
-          <span>{i18n.hintSelect}</span>
+          <span>{copy.hintSelect}</span>
         </span>
       </div>
       <span class="inline-flex items-center gap-1.5">
         <kbd class="kbd kbd-xs">Esc</kbd>
-        <span class="hidden sm:inline">{i18n.closeLabel}</span>
+        <span class="hidden sm:inline">{copy.closeLabel}</span>
       </span>
     </div>
   </div>
@@ -165,7 +159,7 @@ const i18n = {
   let resultLinks: HTMLElement[] = [];
   let debounceTimer: ReturnType<typeof setTimeout> | undefined;
   let PAGEFIND_SCRIPT: string | undefined;
-  let I18N: Record<string, string> = {};
+  let COPY: Record<string, string> = {};
 
   function loadPagefind() {
     if (pagefindModule) return Promise.resolve(pagefindModule);
@@ -214,7 +208,7 @@ const i18n = {
         <div class="bg-base-200 text-base-content/45 mx-auto flex h-10 w-10 items-center justify-center rounded-full" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
         </div>
-        <p class="text-base-content/70 mt-3 text-sm">${escapeHtml(I18N.typeToStart)}</p>
+        <p class="text-base-content/70 mt-3 text-sm">${escapeHtml(COPY.typeToStart)}</p>
       </div>`,
     );
   }
@@ -225,7 +219,7 @@ const i18n = {
       `<div class="px-5 py-12 text-center">
         <p class="text-base-content/70 inline-flex items-center gap-2 text-sm">
           <span class="loading loading-spinner loading-xs" aria-hidden="true"></span>
-          ${escapeHtml(I18N.searching)}
+          ${escapeHtml(COPY.searching)}
         </p>
       </div>`,
     );
@@ -239,7 +233,7 @@ const i18n = {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/><path d="M8 11h6"/></svg>
         </div>
         <p class="text-base-content/70 mt-3 text-sm">
-          ${escapeHtml(I18N.noResultsFor)}
+          ${escapeHtml(COPY.noResultsFor)}
           <span class="text-base-content font-semibold">"${escapeHtml(term)}"</span>
         </p>
       </div>`,
@@ -259,7 +253,7 @@ const i18n = {
 
   function renderResults(container: HTMLElement, results: PagefindSearchData[]) {
     const count = results.length;
-    const label = count === 1 ? I18N.resultsCountOne : I18N.resultsCount;
+    const label = count === 1 ? COPY.resultsCountOne : COPY.resultsCount;
 
     const items = results
       .map((r, i) => {
@@ -328,7 +322,7 @@ const i18n = {
     if (!dialog || !input || !results || !clearBtn) return;
 
     PAGEFIND_SCRIPT = dialog.dataset.pagefindScript;
-    I18N = JSON.parse(dialog.dataset.i18n || '{}');
+    COPY = JSON.parse(dialog.dataset.copy || '{}');
 
     function reset() {
       input!.value = '';
@@ -358,7 +352,7 @@ const i18n = {
         console.error(err);
         renderState(
           results!,
-          `<p class="text-error px-5 py-6 text-sm">Search index not available. Run <code class="bg-base-200 rounded px-1">bun run build</code>.</p>`,
+          `<p class="text-error px-5 py-6 text-sm">検索インデックスを利用できません。 Run <code class="bg-base-200 rounded px-1">bun run build</code>.</p>`,
         );
       }
     }

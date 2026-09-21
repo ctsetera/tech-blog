@@ -7,47 +7,45 @@
  * produces fallback images for posts that lack one.
  *
  * Route: /og/[...slug].png
- * Example: /og/welcome.png → OG image for the "welcome" post (EN)
+ * Example: /og/welcome.png → OG image for the "welcome" post
  */
 /* global Response */
 import type { GetStaticPaths } from 'astro';
 import { generateOgImage } from '../../utils/og-image';
 import { getPosts, postSlug, type Post } from '../../utils/posts';
-import { SITE, type Locale } from '../../config';
-import { formatDate } from '../../i18n/utils';
+import { SITE } from '../../config';
+import { formatDate } from '../../utils/site';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // When autoOgImage is disabled, or skipped via CI flag, generate no OG images.
   if (!SITE.autoOgImage || import.meta.env.CI_SKIP_AUTO_OG_IMAGE === 'true') return [];
 
-  const paths: Array<{ params: { slug: string }; props: { post: Post; locale: Locale } }> = [];
+  const paths: Array<{ params: { slug: string }; props: { post: Post } }> = [];
 
-  for (const locale of SITE.locales) {
-    const posts = await getPosts(locale);
-    for (const post of posts) {
-      // Skip posts that already have a custom heroImage to save build time.
-      if (post.data.heroImage) continue;
+  const posts = await getPosts();
+  for (const post of posts) {
+    // Skip posts that already have a custom heroImage to save build time.
+    if (post.data.heroImage) continue;
 
-      const slug = postSlug(post);
-      const prefix = locale === SITE.defaultLocale ? '' : `${locale}/`;
-      paths.push({
-        params: { slug: `${prefix}${slug}` },
-        props: { post, locale },
-      });
-    }
+    const slug = postSlug(post);
+
+    paths.push({
+      params: { slug: `${slug}` },
+      props: { post },
+    });
   }
+
   return paths;
 };
 
 interface Props {
   post: Post;
-  locale: Locale;
 }
 
 export async function GET({ props }: { props: Props }) {
-  const { post, locale } = props;
+  const { post } = props;
 
-  const date = post.data.pubDate ? formatDate(post.data.pubDate, locale) : undefined;
+  const date = post.data.pubDate ? formatDate(post.data.pubDate) : undefined;
 
   const png = await generateOgImage({
     title: post.data.title,

@@ -2,7 +2,7 @@
   "name": "chirping-astro",
   "version": "1.2.0",
   "type": "module",
-  "description": "A Chirpy-inspired, single-template, multilingual Astro v7 theme with Tailwind v4, daisyUI, MDX, Pagefind, and Giscus.",
+  "description": "A Chirpy-inspired, single-template, Japanese-language Astro v7 theme with Tailwind v4, daisyUI, MDX, Pagefind, and Giscus.",
   "license": "MIT",
   "private": false,
   "engines": {
@@ -74,7 +74,6 @@
     "mdx",
     "pagefind",
     "giscus",
-    "i18n",
     "blog"
   ]
 }

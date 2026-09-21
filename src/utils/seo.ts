@@ -1,6 +1,6 @@
 /* global URL */
-import { SITE, type Locale } from '../config';
-import { alternates, withBase } from '../i18n/utils';
+import { SITE } from '../config';
+import { withBase } from './site';
 
 export interface SeoMeta {
   title: string;
@@ -11,8 +11,6 @@ export interface SeoMeta {
   publishedTime?: string;
   modifiedTime?: string;
   tags?: string[];
-  locale: Locale;
-  hreflangs: ReturnType<typeof alternates>;
   /**
    * When `true`, the SEO component emits
    * `<meta name="robots" content="noindex, nofollow">`.
@@ -25,19 +23,12 @@ export interface SeoMeta {
 interface BuildSeoArgs {
   title?: string;
   description?: string;
-  pathWithoutLocale: string;
   fullPath: string;
-  locale: Locale;
   ogImage?: string;
   type?: 'website' | 'article';
   publishedTime?: Date;
   modifiedTime?: Date;
   tags?: string[];
-  /**
-   * Restrict hreflang alternates to a subset of locales. Used on post
-   * pages where a translation may be missing.
-   */
-  availableLocales?: readonly Locale[];
   /** Emit `<meta name="robots" content="noindex, nofollow">`. */
   noindex?: boolean;
 }
@@ -53,8 +44,6 @@ export function buildSeo(args: BuildSeoArgs): SeoMeta {
     publishedTime: args.publishedTime?.toISOString(),
     modifiedTime: args.modifiedTime?.toISOString(),
     tags: args.tags,
-    locale: args.locale,
-    hreflangs: alternates(args.pathWithoutLocale, args.availableLocales),
     noindex: args.noindex,
   };
 }

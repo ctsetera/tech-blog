@@ -15,9 +15,6 @@ export const SITE_IMAGES = {
   ogDefault: ogDefaultImg,
 } as const;
 
-export const locales = ['en', 'fr'] as const;
-export type Locale = (typeof locales)[number];
-
 /**
  * Author + social handles. Filled in from env vars (see `.env.example`)
  * so identifiers never need to be hard-coded into source.
@@ -53,7 +50,7 @@ export const SITE: SiteConfig = {
   title: 'Chirping Astro',
   /** Site tagline / description. */
   description:
-    'A modern, multilingual Astro v7 theme inspired by Chirpy — built with Tailwind v4, daisyUI, MDX, Pagefind, and Giscus.',
+    'A modern, Japanese-language Astro v7 theme inspired by Chirpy — built with Tailwind v4, daisyUI, MDX, Pagefind, and Giscus.',
   /** Author/handle shown in footer + meta. */
   author: {
     name: 'Chirping Astro',
@@ -65,7 +62,7 @@ export const SITE: SiteConfig = {
   defaultOgImage: ogDefaultImg.src,
   /** Number of posts per page on listings. */
   postsPerPage: 8,
-  /** Display ISO 8601 date format if true, otherwise locale-aware. */
+  /** Display ISO 8601 date format if true, otherwise Japanese-formatted. */
   isoDates: false,
   /** Site-wide default for whether posts should display their featured image. */
   showFeaturedImages: true,
@@ -107,12 +104,6 @@ export const SITE: SiteConfig = {
   // `||` (not `??`) so an explicitly empty `SITE_URL=` in `.env` also
   // falls back to the default. Astro requires `site` to be a valid URL.
   url: process.env.SITE_URL || 'https://chirping-astro.example.com',
-  /** Supported locales. Changing this requires adding/removing locale folders, content, and i18n entries. */
-  locales: locales,
-  /** Default locale. Changing this is a breaking, atomic, multi-file operation. */
-  defaultLocale: 'en',
-  /** Show the language switcher and link to translated pages. */
-  multilingual: true,
 };
 
 export const NAV: readonly NavItem[] = [
@@ -179,6 +170,6 @@ export const GISCUS: GiscusConfig = {
 export const PAGEFIND = {
   /** Public path where the Pagefind bundle is served. */
   bundlePath: '/_pagefind/',
-  /** Number of results to render per locale. */
+  /** Number of results to render per page. */
   pageSize: 10,
 } as const;

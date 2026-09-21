@@ -1,0 +1,45 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PostList from '~/components/PostList.astro';
+import { withBase } from '~/utils/site';
+import { labels } from '~/utils/ui';
+import { getPosts, getTagsWithCount, slugify } from '~/utils/posts';
+
+interface Props {
+  tagName: string;
+}
+
+export async function getStaticPaths() {
+  let paths = [];
+
+  const tags = await getTagsWithCount();
+
+  paths.push(
+    ...tags.map((tag) => ({
+      params: { tag: slugify(tag.name) },
+      props: { tagName: tag.name },
+    })),
+  );
+
+  return paths;
+}
+
+const { tagName } = Astro.props as Props;
+const { tag } = Astro.params;
+const posts = (await getPosts()).filter((p) => p.data.tags.some((tg) => slugify(tg) === tag));
+---
+
+<BaseLayout
+  title={`#${tagName}`}
+  crumbs={[{ label: labels['tags.title'], href: withBase('/tags/') }, { label: `#${tagName}` }]}
+>
+  <header class="mb-6">
+    <p class="text-base-content/70 text-sm tracking-wide uppercase">{labels['list.tagPosts']}</p>
+    <h1 class="text-3xl font-bold tracking-tight">#{tagName}</h1>
+    <p class="text-base-content/70 mt-1 text-sm">
+      {posts.length}
+      {posts.length === 1 ? labels['list.totalPostsOne'] : labels['list.totalPosts']}
+    </p>
+  </header>
+  <PostList posts={posts} />
+</BaseLayout>

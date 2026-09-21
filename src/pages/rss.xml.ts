@@ -5,7 +5,6 @@ import { SITE } from '~/config';
 import { getPosts, postPath } from '~/utils/posts';
 
 export const GET: APIRoute = async (context) => {
-  const { locale } = context.props;
   if (import.meta.env.CI_SKIP_RSS_SITEMAP === 'true') {
     const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     const siteWithBase = `${(context.site ?? new URL(SITE.url)).origin}${base}`;
@@ -15,11 +14,11 @@ export const GET: APIRoute = async (context) => {
       site: siteWithBase,
       stylesheet: `${base}/rss/styles.xsl`,
       items: [],
-      customData: `<language>en-us</language>`,
+      customData: `<language>ja</language>`,
     });
   }
 
-  const posts = await getPosts(locale);
+  const posts = await getPosts();
   // `BASE_URL` ends with a '/' (e.g. '/' in dev, '/chirping-astro/' on Pages),
   // so we slice it off when concatenating to avoid '//rss/styles.xsl'.
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -36,13 +35,6 @@ export const GET: APIRoute = async (context) => {
       link: postPath(post),
       categories: [...post.data.tags, ...post.data.categories],
     })),
-    customData: `<language>en-us</language>`,
+    customData: `<language>ja</language>`,
   });
 };
-
-export function getStaticPaths() {
-  return SITE.locales.map((l) => ({
-    params: { locale: l === SITE.defaultLocale ? undefined : l },
-    props: { locale: l },
-  }));
-}
