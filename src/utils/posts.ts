@@ -7,6 +7,9 @@ import { SITE } from '../config';
 import { withBase } from './site';
 
 import { slugify } from './slugify';
+import { sortPosts } from './post-order';
+
+export { sortPosts, sortPostsByFilename } from './post-order';
 
 export type Post = CollectionEntry<'posts'>;
 
@@ -22,31 +25,6 @@ export function postSlug(entry: Post): string {
 export function postPath(entry: Post): string {
   const slug = postSlug(entry);
   return withBase(`/posts/${slug}/`);
-}
-
-/** Sort posts: pinned first, then by pubDate desc. */
-export function sortPosts(posts: Post[]): Post[] {
-  return [...posts].sort((a, b) => {
-    if (a.data.pinned !== b.data.pinned) return a.data.pinned ? -1 : 1;
-    const at = a.data.pubDate?.valueOf?.() ?? 0;
-    const bt = b.data.pubDate?.valueOf?.() ?? 0;
-    return bt - at;
-  });
-}
-
-/**
- * Sort posts strictly by `pubDate` (newest first), ignoring `pinned`.
- *
- * Used for prev/next post navigation: pinned posts shouldn't yank the
- * latest entry to position 0 and break the chronological chain (which
- * would label a newer post as "Previous" of an older pinned post).
- */
-export function sortPostsByDate(posts: Post[]): Post[] {
-  return [...posts].sort((a, b) => {
-    const at = a.data.pubDate?.valueOf?.() ?? 0;
-    const bt = b.data.pubDate?.valueOf?.() ?? 0;
-    return bt - at;
-  });
 }
 
 /** Get all posts (drafts + unlisted hidden in prod, sorted). */

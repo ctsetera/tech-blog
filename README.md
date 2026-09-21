@@ -40,6 +40,12 @@ Open [http://localhost:4321](http://localhost:4321) to see your site.
 
 ## Writing Posts
 
+記事ファイルは `yyyy-mm-dd-記事ナンバー.md` の形式で命名します（例：`2023-04-15-02.md`）。
+記事一覧はピン止めを優先し、ピン止めあり・なしの各グループ内でファイル名の文字列降順に表示します。
+記事ナンバーは `01`、`02` のように桁数を揃えてください。
+「前の記事・次の記事」はピン止めを考慮せず、ファイル名順で決まります。
+`pubDate` は公開日の表示に使用します。「最近更新した記事」は更新日（未設定なら公開日）の新しい順です。
+
 Create a new `.md` or `.mdx` file in `src/content/posts/`:
 
 ```markdown

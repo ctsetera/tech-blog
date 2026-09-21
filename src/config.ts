@@ -47,16 +47,16 @@ export const SITE: SiteConfig = {
   // ==========================================
 
   /** Default site title used as homepage <title> and meta. */
-  title: 'Chirping Astro',
+  title: 'ちとせの技術ブログ',
   /** Site tagline / description. */
   description:
-    'A modern, Japanese-language Astro v7 theme inspired by Chirpy — built with Tailwind v4, daisyUI, MDX, Pagefind, and Giscus.',
+    '趣味で行った技術的な活動について記録していきます',
   /** Author/handle shown in footer + meta. */
   author: {
-    name: 'Chirping Astro',
+    name: 'ctsetera',
     url: GITHUB_HANDLE ? `https://github.com/${GITHUB_HANDLE}` : undefined,
     avatar: avatarImg,
-    bio: 'A text-focused Astro v7 theme.',
+    bio: '「ちとせ」と申します。都内でフルスタックエンジニアとして勤務しています。趣味で行った技術的な活動について記録していきます。',
   },
   /** Default OG image. */
   defaultOgImage: ogDefaultImg.src,

@@ -8,7 +8,6 @@ import { Icon } from 'astro-icon/components';
 import { GISCUS, SITE } from '../config';
 import { formatDate, isoDate, withBase } from '../utils/site';
 import { labels } from '../utils/ui';
-import { readingTime } from '../utils/reading-time';
 import {
   type Post,
   tagPath,
@@ -25,14 +24,11 @@ interface Props {
   post: Post;
   /** Astro's `headings` array from `await render(post)`. */
   headings: MarkdownHeading[];
-  /** Raw body string used for reading time. */
-  body: string;
   prev?: Post;
   next?: Post;
 }
 
-const { post, headings, body, prev, next } = Astro.props;
-const minutes = readingTime(body).minutes;
+const { post, headings, prev, next } = Astro.props;
 
 const commentsEnabled = post.data.comments !== false && GISCUS.enabled;
 
@@ -136,11 +132,6 @@ if (post.data.mermaid) {
             </span>
           )
         }
-        <span class="inline-flex items-center gap-1">
-          <Icon name="lucide:clock" width={14} height={14} />
-          {minutes}
-          {labels['post.readingTime']}
-        </span>
       </div>
     </header>
 

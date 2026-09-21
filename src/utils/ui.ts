@@ -15,7 +15,6 @@ export const labels = {
   'theme.system': 'システム設定',
   'post.publishedOn': '公開日',
   'post.updatedOn': '更新日',
-  'post.readingTime': '分で読めます',
   'post.toc': '目次',
   'post.tags': 'タグ',
   'post.categories': 'カテゴリ',

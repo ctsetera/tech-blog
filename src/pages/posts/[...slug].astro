@@ -1,7 +1,13 @@
 ---
 import { render } from 'astro:content';
 import PostLayout from '~/layouts/PostLayout.astro';
-import { getPosts, getUnlistedPosts, postSlug, sortPostsByDate, type Post } from '~/utils/posts';
+import {
+  getPosts,
+  getUnlistedPosts,
+  postSlug,
+  sortPostsByFilename,
+  type Post,
+} from '~/utils/posts';
 
 interface Props {
   post: Post;
@@ -19,17 +25,17 @@ export async function getStaticPaths() {
   // Prev/next navigation only spans listed posts (unlisted posts are
   // invisible to readers browsing the site, so linking to them from
   // prev/next would be confusing).
-  const chronological = sortPostsByDate(posts);
+  const filenameOrder = sortPostsByFilename(posts);
 
   paths.push(
     ...posts.map((post) => {
-      const i = chronological.findIndex((p) => p.id === post.id);
+      const i = filenameOrder.findIndex((p) => p.id === post.id);
       return {
         params: { slug: postSlug(post) },
         props: {
           post,
-          prev: chronological[i + 1],
-          next: chronological[i - 1],
+          prev: filenameOrder[i + 1],
+          next: filenameOrder[i - 1],
         },
       };
     }),
@@ -48,9 +54,8 @@ export async function getStaticPaths() {
 
 const { post, prev, next } = Astro.props as Props;
 const { Content, headings } = await render(post);
-const body = post.body ?? '';
 ---
 
-<PostLayout post={post} headings={headings} body={body} prev={prev} next={next}>
+<PostLayout post={post} headings={headings} prev={prev} next={next}>
   <Content />
 </PostLayout>
