@@ -181,6 +181,11 @@ To enable GitHub Discussions-powered comments on posts:
 URLには言語プレフィックスを付けず、RSSは `/rss.xml` の1本です。
 画面の日本語文言は `src/utils/ui.ts`、日付書式は `src/utils/site.ts` で編集できます。
 
+## サイト内検索
+
+検索対象は `/posts/.../` の個別記事のみです。ホーム、カテゴリ・タグ一覧、検索ページなどは検索結果に含めません。
+対象は `pagefind.yml` の `glob` で指定しています。設定変更後は `bun run build` で検索インデックスを再生成してください。
+
 ## Customization
 
 | What                            | Where                                   |
