@@ -49,8 +49,7 @@ export const SITE: SiteConfig = {
   /** Default site title used as homepage <title> and meta. */
   title: 'ちとせの技術ブログ',
   /** Site tagline / description. */
-  description:
-    '趣味で行った技術的な活動について記録していきます',
+  description: '趣味で行った技術的な活動について記録していきます',
   /** Author/handle shown in footer + meta. */
   author: {
     name: 'ctsetera',
@@ -99,7 +98,7 @@ export const SITE: SiteConfig = {
   /** Public URL of the deployed site, no trailing slash. Breaks SEO/RSS if incorrect. */
   // `||` (not `??`) so an explicitly empty `SITE_URL=` in `.env` also
   // falls back to the default. Astro requires `site` to be a valid URL.
-  url: process.env.SITE_URL || 'https://chirping-astro.example.com',
+  url: process.env.SITE_URL || 'https://blog.ctsetera.dev',
 };
 
 export const NAV: readonly NavItem[] = [

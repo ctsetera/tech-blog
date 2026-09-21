@@ -6,7 +6,8 @@
   "license": "MIT",
   "private": false,
   "engines": {
-    "bun": ">=1.1.0"
+    "node": ">=24.0.0",
+    "bun": ">=1.4.2"
   },
   "scripts": {
     "dev": "astro dev",
@@ -22,7 +23,10 @@
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{astro,ts,tsx,js,jsx,md,mdx,css,json}\"",
-    "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,md,mdx,css,json}\""
+    "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,md,mdx,css,json}\"",
+    "preview:workers": "bun run build && wrangler dev --local",
+    "deploy": "bun run build && wrangler deploy",
+    "deploy:check": "bun run build && wrangler deploy --dry-run"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "^0.3.3",
@@ -63,6 +67,7 @@
     "shiki": "^4.3.0",
     "tailwindcss": "^4.3.2",
     "typescript": "^6.0.3",
+    "wrangler": "^4.135.0",
     "zod": "^4.4.3"
   },
   "keywords": [
@@ -75,5 +80,6 @@
     "pagefind",
     "giscus",
     "blog"
-  ]
+  ],
+  "packageManager": "bun@1.4.2"
 }

@@ -13,5 +13,6 @@ minimumReleaseAge = 86400
 disable = false
 
 [run]
-bun = true
+# Wrangler and Astro use Node.js; Bun remains the package manager and test runner.
+bun = false
 silent = false

@@ -104,18 +104,9 @@ function rewriteSitemapXslToRelative() {
 // https://astro.build/config
 export default defineConfig({
   site: SITE.url,
-  // GitHub Pages serves the project at https://<user>.github.io/<repo>/,
-  // so production builds need `base` to match that subpath — every
-  // generated asset URL (CSS, JS, images, favicons) is prefixed with it.
-  //
-  // In `bun run dev`, however, we want the site to open at plain
-  // `http://localhost:4321/` for a friction-free local experience. The
-  // `BASE_PATH` env var (read from `.env`) lets each environment opt in:
-  //   - `.env` (committed empty / unset)         → dev runs at `/`
-  //   - CI / Pages workflow sets BASE_PATH=/chirping-astro for the build
-  //
-  // In source code, always build absolute paths through `withBase()` in `src/utils/site.ts` so they pick up this value
-  // automatically (via `import.meta.env.BASE_URL`).
+  // Serve at the domain root on Cloudflare Workers.
+  // Keep BASE_PATH optional for previews hosted under a subpath.
+  // withBase() in src/utils/site.ts applies it to internal asset URLs.
   base: process.env.BASE_PATH ?? '/',
   trailingSlash: 'ignore',
   build: {
