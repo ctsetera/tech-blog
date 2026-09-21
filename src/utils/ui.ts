@@ -74,8 +74,7 @@ export const labels = {
   '404.description': 'お探しのページは見つかりませんでした。',
   '404.cta': 'ホームに戻る',
   'footer.poweredBy': 'Powered by',
-  'footer.theme': 'テーマ',
-  'footer.privacy': 'プライバシーポリシー',
+  'footer.theme': 'theme',
   'footer.copyright': 'All rights reserved.',
 } as const;
 

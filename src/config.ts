@@ -72,13 +72,11 @@ export const SITE: SiteConfig = {
   dynamicPostCardHeight: false,
   /** Automatically generate Open Graph images for posts that don't have a `heroImage`. */
   autoOgImage: true,
-  /** Show a link to the Privacy Policy page in the footer. */
-  showPrivacyPolicy: true,
   /** Footer text/link controls. */
   footer: {
     /**
      * Optional full override for the left footer line. Supports {year} and {author}.
-     * Default when undefined: "© {year} {author}. All rights reserved." (+ Privacy Policy link if enabled).
+     * Default when undefined: "© {year} {author}. All rights reserved.".
      */
     leftText: undefined,
     /**
@@ -86,8 +84,6 @@ export const SITE: SiteConfig = {
      * Default when undefined: "Powered by Astro · Theme <themeName>".
      */
     rightText: undefined,
-    /** Whether to show the Privacy Policy link in the footer. */
-    showPrivacyPolicy: true,
     /** Whether to show theme credits in the footer right side. Theme <themeName> */
     showThemeCredits: true,
     /** Label for the theme repository link in the right footer line. */

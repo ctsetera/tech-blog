@@ -87,23 +87,11 @@ Go to **Settings → Environments → github-pages → Environment variables** a
 
 > **Note:** All variables are optional. The site builds and deploys with zero configuration — variables just enable extra features.
 
-### 3. Customize the Privacy Policy (optional)
-
-Edit the privacy policy template:
-
-```text
-src/content/pages/privacy.md
-```
-
-Replace placeholder values in `[BRACKETS]` (site name, contact email, etc.).
-The privacy policy appears in the footer with a link — disable it by setting
-`showPrivacyPolicy: false` in `src/config.ts`.
-
-### 4. Push to `main`
+### 3. Push to `main`
 
 That's it. The workflow will build and deploy your site. Your site will be available at `https://<username>.github.io/<repo-name>/`.
 
-### 5. Run (or re-run) the deploy workflow after enabling Pages
+### 4. Run (or re-run) the deploy workflow after enabling Pages
 
 If your first workflow run happened before step 1, deploy was skipped by design.
 After enabling Pages, trigger deployment with either option:

@@ -1,12 +1,10 @@
 ---
 import { SITE } from '../config';
-import { withBase } from '../utils/site';
 import { labels } from '../utils/ui';
 
 const year = new Date().getFullYear();
 const footerLeftText = SITE.footer.leftText?.trim();
 const footerRightText = SITE.footer.rightText?.trim();
-const showPrivacyPolicy = SITE.footer.showPrivacyPolicy ?? SITE.showPrivacyPolicy;
 const showThemeCredits = SITE.footer.showThemeCredits ?? true;
 const shouldRenderRightFooter = Boolean(footerRightText) || showThemeCredits;
 const resolvedLeftText = footerLeftText
@@ -29,16 +27,6 @@ const resolvedLeftText = footerLeftText
             {SITE.author.name}
           </a>
           . {labels['footer.copyright']}
-        </>
-      )
-    }
-    {
-      showPrivacyPolicy && (
-        <>
-          {' · '}
-          <a href={withBase('/privacy')} class="hover:text-primary">
-            {labels['footer.privacy']}
-          </a>
         </>
       )
     }
