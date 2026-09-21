@@ -34,8 +34,8 @@ Open [http://localhost:4321](http://localhost:4321) to see your site.
 
 1. Edit `src/config.ts` to set your site title, author name, and social links.
 2. Copy `.env.example` to `.env` and fill in your values.
-3. Replace `src/assets/images/site/avatar.svg` with your own avatar.
-4. Replace `src/assets/images/site/favicon.svg` with your own favicon.
+3. Replace `src/assets/images/site/avatar.png` with your own avatar.
+4. Replace `src/assets/images/site/favicon.ico` with your own favicon.
 5. Start writing posts in `src/content/posts/`.
 
 ## Writing Posts
@@ -193,8 +193,8 @@ URLには言語プレフィックスを付けず、RSSは `/rss.xml` の1本で�
 | Site title, description, author | `src/config.ts` → `SITE`                |
 | Navigation links                | `src/config.ts` → `NAV`                 |
 | Social links                    | `src/config.ts` → `SOCIAL`              |
-| Avatar image                    | `src/assets/images/site/avatar.svg`     |
-| Favicon                         | `src/assets/images/site/favicon.svg`    |
+| Avatar image                    | `src/assets/images/site/avatar.png`     |
+| Favicon                         | `src/assets/images/site/favicon.ico`    |
 | Default OG image                | `src/assets/images/site/og-default.svg` |
 | Global styles                   | `src/styles/global.css`                 |
 | Theme colors                    | daisyUI theme tokens in `global.css`    |

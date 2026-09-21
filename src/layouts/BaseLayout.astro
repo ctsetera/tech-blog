@@ -1,4 +1,5 @@
 ---
+import faviconUrl from '../assets/images/site/favicon.ico?url';
 import '../styles/global.css';
 
 import { Font } from 'astro:assets';
@@ -9,8 +10,6 @@ import Panel from '../components/Panel.astro';
 import SEO from '../components/SEO.astro';
 import BackToTop from '../components/islands/BackToTop.astro';
 import { ClientRouter } from 'astro:transitions';
-import faviconImg from '../assets/images/site/favicon.svg';
-import { withBase } from '../utils/site';
 import { labels } from '../utils/ui';
 import { buildSeo, type SeoMeta } from '../utils/seo';
 
@@ -68,7 +67,7 @@ const meta: SeoMeta =
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f7f8" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e" />
-    <link rel="icon" type="image/svg+xml" href={withBase(faviconImg.src)} />
+    <link rel="icon" type="image/x-icon" href={faviconUrl} />
     <SEO meta={meta} />
     {/* Custom fonts configured via Astro Fonts API */}
     <Font cssVariable="--font-source-sans-3" />
