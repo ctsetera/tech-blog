@@ -195,7 +195,7 @@ URLには言語プレフィックスを付けず、RSSは `/rss.xml` の1本で�
 | Social links                    | `src/config.ts` → `SOCIAL`              |
 | Avatar image                    | `src/assets/images/site/avatar.png`     |
 | Favicon                         | `src/assets/images/site/favicon.ico`    |
-| Default OG image                | `src/assets/images/site/og-default.svg` |
+| Default OG image                | `src/pages/og-default.png.ts` |
 | Global styles                   | `src/styles/global.css`                 |
 | Theme colors                    | daisyUI theme tokens in `global.css`    |
 
@@ -227,3 +227,10 @@ For full documentation on all features (dark mode, math, comments, OG images, et
 ## License
 
 MIT — see [LICENSE](./LICENSE).
+
+## 共通OGP画像
+
+ホーム、カテゴリ、タグなどの記事以外のページは、共通の `/og-default.png` を使用します。
+`SITE.title` と `SITE.description` を使い、個別記事と同じ日本語対応の生成処理でビルド時に作成します。
+日付・カテゴリ・タグは指定せず、下部にはサイト名とドメインを表示します。
+`bun run build` 後、`dist/og-default.png` で確認できます。記事の自動OGP生成を無効にした場合も、共通画像は生成します。

@@ -1,6 +1,5 @@
 import process from 'node:process';
 import avatarImg from './assets/images/site/avatar.png';
-import ogDefaultImg from './assets/images/site/og-default.svg';
 import type { GiscusConfig, NavItem, SiteConfig, SocialLink } from './types/config';
 
 /**
@@ -12,7 +11,6 @@ import type { GiscusConfig, NavItem, SiteConfig, SocialLink } from './types/conf
 // Export imported site images for use in components
 export const SITE_IMAGES = {
   avatar: avatarImg,
-  ogDefault: ogDefaultImg,
 } as const;
 
 /**
@@ -58,7 +56,7 @@ export const SITE: SiteConfig = {
     bio: '「ちとせ」と申します。都内でフルスタックエンジニアとして勤務しています。趣味で行った技術的な活動について記録していきます。',
   },
   /** Default OG image. */
-  defaultOgImage: ogDefaultImg.src,
+  defaultOgImage: '/og-default.png',
   /** Number of posts per page on listings. */
   postsPerPage: 8,
   /** Display ISO 8601 date format if true, otherwise Japanese-formatted. */
