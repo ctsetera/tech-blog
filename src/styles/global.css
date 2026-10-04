@@ -467,7 +467,7 @@
     @apply bg-transparent p-0;
   }
   .prose-chirpy img {
-    @apply border-base-300 mx-auto my-6 rounded-md border;
+    @apply border-base-300 mx-0 my-6 rounded-md border;
     max-width: 100%;
     height: auto;
   }
@@ -479,7 +479,7 @@
   }
   .prose-chirpy figure > img,
   .prose-chirpy figure > picture > img {
-    @apply mx-auto rounded-md border-0;
+    @apply mx-0 rounded-md border-0;
     margin-top: 0;
     margin-bottom: 0;
     max-width: 100%;
